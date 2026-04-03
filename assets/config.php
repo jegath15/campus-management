@@ -15,7 +15,7 @@
         $user = getenv('DB_USER') ?: "your_db_username";
         $password = getenv('DB_PASS') ?: "your_db_password";
         $db = getenv('DB_NAME') ?: "your_db_name";
-        error_reporting(0); // Hide errors on production
+        error_reporting(E_ALL); // Temporarily show errors on production to debug login
     }
     
     // SMTP Configuration
