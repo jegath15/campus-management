@@ -1,0 +1,82 @@
+:root {
+    --light: var(--bg-card);
+    --primary: var(--primary);
+    --light-primary: rgba(67, 97, 238, 0.1);
+    --grey: var(--bg-main);
+    --dark-grey: var(--text-muted);
+    --dark: var(--text-main);
+    --danger: var(--danger);
+    --light-danger: rgba(247, 37, 133, 0.1);
+    --warning: var(--warning);
+    --light-warning: rgba(255, 152, 0, 0.1);
+    --success: var(--success);
+    --light-success: rgba(76, 175, 80, 0.1);
+    --white: var(--bg-card);
+}
+
+body {
+    background-color: var(--grey);
+    font-family: 'Inter', 'Poppins', sans-serif;
+    color: var(--dark);
+}
+.main {
+    margin-top: 2rem;
+    padding: 0 5%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+
+.premium-card {
+    background: var(--bg-card);
+    padding: 2.25rem;
+    border-radius: 1.5rem;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.premium-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+}
+
+/* Force Visibility for Dashboard Buttons */
+.owner-btn, .btn-primary, .btn-success {
+    background-color: var(--primary) !important;
+    border: none !important;
+    color: white !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: inline-block !important;
+    box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3) !important;
+}
+
+.btn-success {
+    background-color: #2ec4b6 !important;
+    box-shadow: 0 4px 12px rgba(46, 196, 182, 0.3) !important;
+}
+
+.status-card {
+    background: linear-gradient(135deg, #4361ee, #3a0ca3) !important;
+    color: white !important;
+    border: none !important;
+}
+
+.status-card .badge {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-nav {
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+}
