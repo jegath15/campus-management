@@ -1,10 +1,10 @@
 <?php
+include('assets/config.php');
 error_reporting(0);
 session_start();
 
 if (isset($_SESSION['uid'])) {
   $uid = $_SESSION['uid'];
-  include('assets/config.php');
 
   $query = "SELECT `role` FROM `users` WHERE `users`.`id`=?";
   $stmt = mysqli_prepare($conn, $query);
