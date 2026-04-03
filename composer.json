@@ -2,7 +2,8 @@
     "name": "jegath15/campus-management",
     "description": "Campus Management System",
     "require": {
-        "php": ">=8.0"
+        "php": ">=8.0",
+        "ext-mysqli": "*"
     },
     "license": "MIT"
 }
