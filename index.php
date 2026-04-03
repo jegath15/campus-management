@@ -1,4 +1,3 @@
-<?php include('assets/config.php'); ?>
 <?php include('shared/_header.php');?>
 
   <main>

@@ -1,3 +1,10 @@
+<?php 
+    // Ensure config is loaded globally
+    $config_path = dirname(__DIR__) . '/assets/config.php';
+    if (file_exists($config_path)) {
+        require_once($config_path);
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
