@@ -1,6 +1,15 @@
 <?php
+    // Robust Session Configuration - Prevents 500 errors on Railway
+    $session_dir = dirname(__FILE__, 2) . '/sessions';
+    if (!is_dir($session_dir)) {
+        @mkdir($session_dir, 0777, true);
+    }
+    if (is_writable($session_dir)) {
+        session_save_path($session_dir);
+    }
+
     // Detect environment
-    $is_local = ($_SERVER['HTTP_HOST'] === 'localhost' || $_SERVER['HTTP_HOST'] === '127.0.0.1');
+    $is_local = (isset($_SERVER['HTTP_HOST']) && ($_SERVER['HTTP_HOST'] === 'localhost' || $_SERVER['HTTP_HOST'] === '127.0.0.1'));
 
     if ($is_local) {
         // Local XAMPP settings
@@ -8,48 +17,49 @@
         $user = "root";
         $password = "";
         $db = "_sms";
-        error_reporting(E_ALL); // Show errors locally
+        error_reporting(E_ALL); 
     } else {
-        // Production settings - Prefers environment variables for security
-        $server = getenv('DB_HOST') ?: "localhost";
-        $user = getenv('DB_USER') ?: "your_db_username";
-        $password = getenv('DB_PASS') ?: "your_db_password";
-        $db = getenv('DB_NAME') ?: "your_db_name";
-        error_reporting(0); // Hide errors on production
+        // Production settings - Robust detection for Railway and other hosts
+        $server   = getenv('MYSQLHOST') ?: getenv('DB_HOST') ?: getenv('HOSTNAME') ?: "localhost";
+        $user     = getenv('MYSQLUSER') ?: getenv('DB_USER') ?: "root";
+        $password = getenv('MYSQLPASSWORD') ?: getenv('DB_PASS') ?: ""; 
+        $db       = getenv('MYSQLDATABASE') ?: getenv('DB_NAME') ?: "railway";
+        
+        // TEMPORARY: Enable error reporting to diagnose live issues
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL); 
     }
     
     // SMTP Configuration
     define('SMTP_HOST', getenv('SMTP_HOST') ?: 'smtp.gmail.com');
     define('SMTP_USER', getenv('SMTP_USER') ?: 'erp.schoolmanagementsystem@gmail.com');
-    define('SMTP_PASS', getenv('SMTP_PASS') ?: 'whqbysomdhdjthvr'); // Pre-configured App Password
+    define('SMTP_PASS', getenv('SMTP_PASS') ?: 'whqbysomdhdjthvr');
     define('SMTP_PORT', getenv('SMTP_PORT') ?: 587);
     define('SMTP_FROM', getenv('SMTP_FROM') ?: 'erp.schoolmanagementsystem@gmail.com');
 
-    // Establish connection
-    $conn = mysqli_connect($server, $user, $password, $db);
+    // Establish connection with massive safety
+    $conn = null;
+    try {
+        $conn = mysqli_connect($server, $user, $password, $db);
+    } catch (Throwable $e) {
+        $error_msg = $e->getMessage();
+        if (!$is_local) {
+            die("<h1>Database Connectivity Error</h1><p>The application encountered a fatal error while connecting to the database.</p><p>Error: <b>$error_msg</b></p><p>Attempted Host: <code>$server</code> | Attempted User: <code>$user</code></p><p>Please verify your environment variables in the Railway dashboard.</p>");
+        } else {
+            die("Local Database Error: $error_msg");
+        }
+    }
 
     // Determine the base URL relative to the domain root
     if ($is_local) {
-        // Find if project is in a subdirectory (like /campus/)
         $script_path = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
         $base_url = (strlen($script_path) > 1) ? $script_path . '/' : '/';
-        // If script path doesn't contain "campus" but it should
         if (!str_contains($base_url, '/campus/')) {
              $base_url = "/campus/";
         }
     } else {
-        // For production, usually the site root is /
         $base_url = "/";
     }
-    
     define('BASE_URL', $base_url);
-
-    if (!$conn) {
-        if (!$is_local) {
-            die("Critical Error: Unable to connect to the database. Please ensure DB_HOST, DB_USER, DB_PASS, and DB_NAME environment variables are set.");
-        }
-        // Local fallback error
-        error_log("Database connection failed: " . mysqli_connect_error());
-        die("Local Database Error: Database connection failed. Please ensure MySQL is running in XAMPP.");
-    }
 ?>

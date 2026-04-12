@@ -17,9 +17,16 @@ $stmt = $conn->prepare("
     LEFT JOIN fees f ON s.id = f.student_id
     WHERE p.user_id=?
 ");
-$stmt->bind_param("s", $user_id);
-$stmt->execute();
-$data = $stmt->get_result()->fetch_assoc();
+
+$data = null;
+if ($stmt) {
+    $stmt->bind_param("s", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result) {
+        $data = $result->fetch_assoc();
+    }
+}
 
 $student_name = ($data['fname'] ?? '') . ' ' . ($data['lname'] ?? '');
 $student_id = $data['student_id'] ?? '';
@@ -28,19 +35,30 @@ $image = $data['image'] ?? '1.jpeg';
 $img_path = $image ? "../studentUploads/$image" : "../images/1.jpeg";
 
 // Calculate attendance
-$stmt_att = $conn->prepare("SELECT COUNT(*) as total, SUM(CASE WHEN attendence='1' THEN 1 ELSE 0 END) as present FROM attendence WHERE student_id=?");
-$stmt_att->bind_param("s", $student_id);
-$stmt_att->execute();
-$att_data = $stmt_att->get_result()->fetch_assoc();
+$attendance_percentage = 0;
+$present_days = 0;
+$total_days = 1;
 
-$total_days = $att_data['total'] > 0 ? $att_data['total'] : 1; 
-$present_days = $att_data['present'] ?? 0;
-$attendance_percentage = round(($present_days / $total_days) * 100);
+$stmt_att = $conn->prepare("SELECT COUNT(*) as total, SUM(CASE WHEN attendence='1' THEN 1 ELSE 0 END) as present FROM attendence WHERE student_id=?");
+if ($stmt_att) {
+    $stmt_att->bind_param("s", $student_id);
+    $stmt_att->execute();
+    $res_att = $stmt_att->get_result();
+    if ($res_att) {
+        $att_data = $res_att->fetch_assoc();
+        $total_days = (isset($att_data['total']) && $att_data['total'] > 0) ? $att_data['total'] : 1; 
+        $present_days = $att_data['present'] ?? 0;
+        $attendance_percentage = round(($present_days / $total_days) * 100);
+    }
+}
 
 // Fetch Notices
+$notice_res = null;
 $stmt_not = $conn->prepare("SELECT * FROM notice WHERE role='parent' OR role='all' OR role='' ORDER BY s_no DESC LIMIT 3");
-$stmt_not->execute();
-$notice_res = $stmt_not->get_result();
+if ($stmt_not) {
+    $stmt_not->execute();
+    $notice_res = $stmt_not->get_result();
+}
 
 $active_page = 'dashboard';
 ?>
@@ -132,7 +150,7 @@ $active_page = 'dashboard';
                 <div class="updates premium-card">
                     <div class="message">
                         <?php
-                        if ($notice_res->num_rows > 0) {
+                        if ($notice_res && $notice_res->num_rows > 0) {
                             while ($row_n = $notice_res->fetch_assoc()) {
                                 echo "<div class='notice-item' style='margin-bottom:1.5rem;'>
                                     <h4 style='color: var(--primary);'>" . $row_n['title'] . "</h4>

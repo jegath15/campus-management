@@ -16,9 +16,16 @@ $stmt = $conn->prepare("
     JOIN students s ON p.student_id = s.id
     WHERE p.user_id=?
 ");
-$stmt->bind_param("s", $user_id);
-$stmt->execute();
-$data = $stmt->get_result()->fetch_assoc();
+
+$data = null;
+if ($stmt) {
+    $stmt->bind_param("s", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result) {
+        $data = $result->fetch_assoc();
+    }
+}
 
 $pending = ($data['total_fee'] ?? 0) - ($data['paid_amount'] ?? 0);
 $image = $data['image'] ?? '1.jpeg';
