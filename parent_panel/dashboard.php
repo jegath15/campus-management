@@ -13,9 +13,9 @@ $user_id = $_SESSION['uid'];
 $stmt = $conn->prepare("
     SELECT s.id as student_id, s.fname, s.lname, s.image, s.class, s.section, f.total_fee, f.paid_amount, f.status
     FROM parents p
-    JOIN students s ON p.student_id = s.id
-    LEFT JOIN fees f ON s.id = f.student_id
-    WHERE p.user_id=?
+    JOIN students s ON p.student_id COLLATE utf8mb4_general_ci = s.id COLLATE utf8mb4_general_ci
+    LEFT JOIN fees f ON s.id COLLATE utf8mb4_general_ci = f.student_id COLLATE utf8mb4_general_ci
+    WHERE p.user_id COLLATE utf8mb4_general_ci = ?
 ");
 
 $data = null;
@@ -54,7 +54,7 @@ if ($stmt_att) {
 
 // Fetch Notices
 $notice_res = null;
-$stmt_not = $conn->prepare("SELECT * FROM notice WHERE role='parent' OR role='all' OR role='' ORDER BY s_no DESC LIMIT 3");
+$stmt_not = $conn->prepare("SELECT * FROM notice WHERE (role COLLATE utf8mb4_general_ci ='parent') OR (role COLLATE utf8mb4_general_ci ='all') OR (role COLLATE utf8mb4_general_ci ='') ORDER BY s_no DESC LIMIT 3");
 if ($stmt_not) {
     $stmt_not->execute();
     $notice_res = $stmt_not->get_result();

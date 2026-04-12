@@ -51,6 +51,8 @@
         }
     }
 
+    mysqli_set_charset($conn, "utf8mb4");
+
     // Determine the base URL relative to the domain root
     if ($is_local) {
         $script_path = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
