@@ -2,6 +2,8 @@
 include("assets/config.php");
 $response = array();
 
+    if (isset($_POST['email']) && isset($_POST['password'])) {
+
     if ($conn) {
 
         $email = mysqli_real_escape_string($conn, $_POST['email']);
