@@ -100,4 +100,7 @@ $data = $stmt->get_result()->fetch_assoc();
     </main>
 </div>
 
-<?php include("../teacher_panel/partials/_footer.php"); ?>
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

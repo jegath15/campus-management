@@ -107,7 +107,7 @@ if(isset($_POST['submit'])){
     <?php include('partials/_sidebar.php'); ?>
 
     <div class="content">
-        <?php include("../admin_panel/partials/_navbar.php"); ?>
+        <?php include("partials/_navbar.php"); ?>
 
         <main>
             <h1>Security Settings</h1>
@@ -141,8 +141,10 @@ if(isset($_POST['submit'])){
         </main>
     </div>
 
-    <script src="app.js"></script>
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>ai-chat.css">
     <script src="<?php echo BASE_URL; ?>ai-chat.js"></script>
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../teacher_panel/script.js"></script>
 </body>
 </html>

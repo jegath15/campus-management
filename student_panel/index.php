@@ -17,20 +17,20 @@ if (!$user_data) {
 }
 ?>
 
-<!-- Reversion to Administrative Sidebar Layout -->
+<!-- Legacy Administrative Sidebar Layout -->
 <?php include('partials/_sidebar.php'); ?>
 
 <div class="content">
-    <?php include("../admin_panel/partials/_navbar.php"); // Reuse admin navbar for perfect sync if exists, else custom ?>
+    <?php include("partials/_navbar.php"); ?>
     
     <main>
         <div class="header">
-            <div class="left">
+            <div class="left" style="margin-left: 20px;">
                 <h1>Student Dashboard</h1>
                 <ul class="breadcrumb" style="list-style: none; display: flex; gap: 10px; color: var(--text-muted); padding: 0;">
                     <li>Academics</li>
                     <li>></li>
-                    <li class="active" style="color: var(--primary);">Home</li>
+                    <li class="active" style="color: var(--primary);">Home View</li>
                 </ul>
             </div>
         </div>
@@ -57,6 +57,7 @@ if (!$user_data) {
                 <div class="header">
                     <i class='bx bx-news'></i>
                     <h3>Campus Bulletins</h3>
+                    <i class='bx bx-filter'></i>
                 </div>
                 <div id="noticeListContainer" style="padding: 20px;">
                     <?php
@@ -81,6 +82,7 @@ if (!$user_data) {
                 <div class="header">
                     <i class='bx bx-info-circle'></i>
                     <h3>Quick Links</h3>
+                    <i class='bx bx-dots-vertical-rounded'></i>
                 </div>
                 <ul class="task-list">
                     <li onclick="location.href='timetable.php'"><i class='bx bx-chevron-right'></i> Time Table</li>
@@ -91,5 +93,8 @@ if (!$user_data) {
     </main>
 </div>
 
+<!-- Bootstrap 5 JS Bundle & Side Menu Script -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../teacher_panel/script.js"></script>
 </body>
 </html>

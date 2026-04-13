@@ -100,7 +100,7 @@ $active_page = 'exam';
     <?php include('partials/_sidebar.php'); ?>
 
     <div class="content">
-        <?php include("../admin_panel/partials/_navbar.php"); ?>
+        <?php include("partials/_navbar.php"); ?>
 
         <main>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
@@ -223,6 +223,7 @@ $active_page = 'exam';
     </script>
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>ai-chat.css">
     <script src="<?php echo BASE_URL; ?>ai-chat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../teacher_panel/script.js"></script>
 </body>
-
 </html>
