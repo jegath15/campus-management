@@ -1,16 +1,23 @@
 <?php
 include('../assets/config.php');
 $response = array();
-session_start();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['uid'])) {
     $id = $_SESSION['uid'];
-    $sql = "SELECT `class`,`section` FROM `students` WHERE `id`='$id'";
-    $result = mysqli_query($conn, $sql);
+    
+    $stmt = $conn->prepare("SELECT `class`,`section` FROM `students` WHERE `id`=?");
+    $stmt->bind_param("s", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
     $row = $result->fetch_assoc();
 
-    $class = $row['class'];
-    $section = $row['section'];
+    if ($row) {
+        $class = $row['class'];
+        $section = $row['section'];
+    } else {
+        $class = 'N/A';
+        $section = 'N/A';
+    }
 
     $query = "SELECT * FROM `time_table` WHERE `class`='$class' AND `section`='$section'";
     $result2 = mysqli_query($conn, $query);

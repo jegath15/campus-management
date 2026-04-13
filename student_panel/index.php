@@ -2,19 +2,10 @@
 include("../assets/config.php");
 include("../assets/noSessionRedirect.php"); 
 include("./verifyRoleRedirect.php"); 
+// $user_data is now globally available from verifyRoleRedirect.php
 
-// Fetch user data once at the top
-$id = $_SESSION['uid'];
-$query_user = "SELECT * FROM students WHERE id=?";
-$stmt = $conn->prepare($query_user);
-$stmt->bind_param("s", $id);
-$stmt->execute();
-$user_data = $stmt->get_result()->fetch_assoc();
-
-if (!$user_data) {
-    header("Location: logout.php");
-    exit();
-}
+$active_page = 'home';
+?>
 
 // Dynamic Attendance Metrics
 $id = $_SESSION['uid'];

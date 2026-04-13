@@ -1,14 +1,8 @@
 <?php 
+include("../assets/config.php");
 include("../assets/noSessionRedirect.php"); 
 include("./verifyRoleRedirect.php"); 
-
-// Fetch user data
-$id = $_SESSION['uid'];
-$query_user = "SELECT * FROM students WHERE id=?";
-$stmt = $conn->prepare($query_user);
-$stmt->bind_param("s", $id);
-$stmt->execute();
-$user_data = $stmt->get_result()->fetch_assoc();
+// $user_data is now globally available from verifyRoleRedirect.php
 
 $active_page = 'timetable';
 ?>
