@@ -1,5 +1,4 @@
 <?php
-session_start();
 include('../assets/config.php');
 if(!isset($_SESSION['uid']) || $_SESSION['role'] !== 'parent'){
    header("Location: ../index.php");

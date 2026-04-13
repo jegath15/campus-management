@@ -1,16 +1,6 @@
 <?php
-error_reporting(0);
-session_start();
+include("assets/config.php");
 $response = array();
-
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    http_response_code(404);
-    die();
-}
-
-if (isset($_POST['email']) && isset($_POST['password'])) {
-
-    include("assets/config.php");
 
     if ($conn) {
 

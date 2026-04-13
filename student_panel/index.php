@@ -1,4 +1,5 @@
 <?php 
+include("../assets/config.php");
 include("../assets/noSessionRedirect.php"); 
 include("./verifyRoleRedirect.php"); 
 
