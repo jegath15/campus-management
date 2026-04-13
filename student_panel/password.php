@@ -1,16 +1,10 @@
 <?php 
+include("../assets/config.php");
 include("../assets/noSessionRedirect.php"); 
 include("./verifyRoleRedirect.php"); 
-include('../assets/config.php');
+// $user_data is now globally available from verifyRoleRedirect.php
 
 $id = $_SESSION['uid'];
-
-// Fetch user data
-$query_user = "SELECT * FROM students WHERE id=?";
-$stmt_user = $conn->prepare($query_user);
-$stmt_user->bind_param("s", $id);
-$stmt_user->execute();
-$user_data = $stmt_user->get_result()->fetch_assoc();
 
 $active_page = 'password';
 

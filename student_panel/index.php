@@ -5,7 +5,6 @@ include("./verifyRoleRedirect.php");
 // $user_data is now globally available from verifyRoleRedirect.php
 
 $active_page = 'home';
-?>
 
 // Dynamic Attendance Metrics
 $id = $_SESSION['uid'];
@@ -23,8 +22,6 @@ $stmt_l = $conn->prepare("SELECT COUNT(*) FROM attendence WHERE student_id = ? A
 $stmt_l->bind_param("s", $id);
 $stmt_l->execute();
 $late = $stmt_l->get_result()->fetch_row()[0];
-
-$active_page = 'home';
 ?>
 
 <!DOCTYPE html>
