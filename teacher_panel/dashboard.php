@@ -1,131 +1,117 @@
-<?php include('partials/_header_revised.php') ?>
-<?php 
-$check = '1'; 
-$active_page = 'dashboard';
-?>
+<?php include('partials/_header.php') ?>
 
-<!-- Navbar and Header Standardized -->
-<?php include('partials/_navbar.php'); ?>
+<!-- Reversion to Original Sidebar Architecture -->
+<?php include('partials/_sidebar.php') ?>
 <input type="hidden" value="1" id="checkFileName">
 
-<div class="container">
-    <!-- Standardized Sidebar Migration -->
-    <?php include('partials/_sidebar.php'); ?>
+<!-- Main Layout Structure (Legacy Sidebar + Content) -->
+<div class="content">
+    <?php include("partials/_navbar.php"); ?>
 
     <main>
-        <div class="header">
-            <h1>Teacher Dashboard</h1>
-        </div>
-        <div class="insights">
-            <!-- Analytics Cards with Premium Style -->
-            <div class="card1 premium-card">
-                <span class="material-icons-sharp">person</span>
-                <div class="middle">
-                    <div class="left">
-                        <h3><?php echo t('teachers'); ?></h3>
-                        <h2 id="teacherCount">...</h2>
-                    </div>
-                </div>
-                <small class="text-muted"><?php echo t('total_faculty'); ?></small>
-            </div>
-            
-            <div class="card2 premium-card" onclick="showStudentList()" style="cursor: pointer;">
-                <span class="material-icons-sharp">group</span>
-                <div class="middle">
-                    <div class="left">
-                        <h3><?php echo t('students'); ?></h3>
-                        <h2 id="studentCount">...</h2>
-                    </div>
-                </div>
-                <small class="text-muted"><?php echo t('registered_pupils'); ?></small>
-            </div>
-
-            <div class="card3 premium-card" onclick="showNotesList()" style="cursor: pointer;">
-                <span class="material-icons-sharp">description</span>
-                <div class="middle">
-                    <div class="left">
-                        <h3><?php echo t('notes'); ?></h3>
-                        <h2 id="classCount">...</h2>
-                    </div>
-                </div>
-                <small class="text-muted"><?php echo t('course_materials'); ?></small>
-            </div>
-
-            <div class="card4 premium-card" onclick="showNoticeList()" style="cursor: pointer;">
-                <span class="material-icons-sharp">campaign</span>
-                <div class="middle">
-                    <div class="left">
-                        <h3><?php echo t('notices'); ?></h3>
-                        <h2 id="noticeCount">...</h2>
-                    </div>
-                </div>
-                <small class="text-muted"><?php echo t('active_bulletins'); ?></small>
+        <div class="header" style="padding: 0 20px;">
+            <div class="left">
+                <h1>Dashboard</h1>
+                <ul class="breadcrumb" style="list-style: none; display: flex; gap: 10px; color: var(--text-muted); padding: 0;">
+                    <li>Analytics</li>
+                    <li>></li>
+                    <li class="active" style="color: var(--primary);">System Overview</li>
+                </ul>
             </div>
         </div>
+
+        <!-- Insights as Boxicon Cards -->
+        <ul class="insights">
+            <li class="premium-card" style="display: flex; align-items: center; gap: 20px;">
+                <i class='bx bxs-user-rectangle' style="font-size: 2.5rem; color: var(--primary); background: var(--light-primary); padding: 15px; border-radius: 15px;"></i>
+                <span class="info">
+                    <h3 id="teacherCount">1</h3>
+                    <p>Teachers</p>
+                </span>
+            </li>
+            <li class="premium-card" style="display: flex; align-items: center; gap: 20px;">
+                <i class='bx bxs-group' style="font-size: 2.5rem; color: var(--success); background: var(--light-success); padding: 15px; border-radius: 15px;"></i>
+                <span class="info">
+                    <h3 id="studentCount">1</h3>
+                    <p>StudentsRegistered</p>
+                </span>
+            </li>
+            <li class="premium-card" style="display: flex; align-items: center; gap: 20px;">
+                <i class='bx bxs-note' style="font-size: 2.5rem; color: var(--warning); background: var(--light-warning); padding: 15px; border-radius: 15px;"></i>
+                <span class="info">
+                    <h3 id="notesCount">1</h3>
+                    <p>NotesUploaded</p>
+                </span>
+            </li>
+            <li class="premium-card" style="display: flex; align-items: center; gap: 20px;">
+                <i class='bx bxs-bookmark-star' style="font-size: 2.5rem; color: var(--danger); background: var(--light-danger); padding: 15px; border-radius: 15px;"></i>
+                <span class="info">
+                    <h3 id="noticeCount">3</h3>
+                    <p>Total Notices</p>
+                </span>
+            </li>
+        </ul>
 
         <div class="bottom-data">
-            <div class="orders premium-card">
+            <div class="orders">
                 <div class="header">
-                    <span class="material-icons-sharp" style="color: var(--primary);">campaign</span>
-                    <h3>Notice Board</h3>
-                    <a href="noticeboard.php" class="btn" style="padding: 0.5rem; border-radius: 50%; min-width: unset;">
-                        <span class="material-icons-sharp">add</span>
-                    </a>
+                    <i class='bx bx-receipt'></i>
+                    <h3>Latest Notices</h3>
+                    <i class='bx bx-filter'></i>
+                    <i class='bx bx-plus' onclick="location.href='noticeboard.php'"></i>
                 </div>
                 <div id="noticeListContainer">
-                    <p class="text-muted">Loading notices...</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Notice Title</th>
+                                <th>Release Date</th>
+                                <th>Issued By</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Notices will be injected here -->
+                            <tr>
+                                <td>System Update v3.1</td>
+                                <td>14 Apr, 2026</td>
+                                <td>System Admin</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+            </div>
+
+            <div class="reminders">
+                <div class="header">
+                    <i class='bx bx-note'></i>
+                    <h3>Reminders</h3>
+                    <i class='bx bx-plus' data-bs-toggle="modal" data-bs-target="#reminder-modal"></i>
+                </div>
+                <ul class="task-list" id="reminder-list">
+                    <!-- Reminders will be loaded here -->
+                </ul>
             </div>
         </div>
     </main>
+</div>
 
-    <div class="right">
-        <div class="announcements">
-            <h2>Upcoming Events</h2>
-            <div class="updates premium-card">
-                <div class="message">
-                    <p><b>Annual Sports Day</b> - Next Friday</p>
-                    <small class="text-muted">March 28, 2024</small>
-                    <hr style="border: 0.5px solid var(--color-light); margin: 0.5rem 0;">
-                    <p><b>Parent-Teacher Meet</b> - This Saturday</p>
-                    <small class="text-muted">March 22, 2024</small>
-                </div>
+<!-- Modal -->
+<div class="modal fade" id="reminder-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="border-radius: 15px;">
+            <div class="modal-header">
+                <h5 class="modal-title">Create New Reminder</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-        </div>
-
-        <div class="leaves">
-            <h2>My Tasks</h2>
-            <div class="premium-card">
-                <div class="task-list" style="display: grid; gap: 0.8rem;">
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <span class="material-icons-sharp text-success">check_circle</span>
-                        <span>Check Assignments</span>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <span class="material-icons-sharp text-warning">pending_actions</span>
-                        <span>Upload Quiz</span>
-                    </div>
-                </div>
+            <div class="modal-body">
+                <textarea class="form-control" id="reminder-msg" rows="3" placeholder="Enter reminder text..."></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="addReminder()">SAVE</button>
             </div>
         </div>
     </div>
 </div>
 
-<script src="../student_panel/app.js"></script>
-<script>
-    // Fetch dashboard counts
-    document.addEventListener('DOMContentLoaded', () => {
-        // Mocking counts for demonstration
-        document.getElementById('teacherCount').innerText = '12';
-        document.getElementById('studentCount').innerText = '245';
-        document.getElementById('classCount').innerText = '8';
-        document.getElementById('noticeCount').innerText = '5';
-        
-        // Load notices snippet
-        document.getElementById('noticeListContainer').innerHTML = "<p>All academic systems are operational. Rebranding to Elite CMS v3.1 complete.</p>";
-    });
-</script>
-<link rel="stylesheet" href="<?php echo BASE_URL; ?>ai-chat.css">
-<script src="<?php echo BASE_URL; ?>ai-chat.js"></script>
-</body>
-</html>
+<script src="../teacher_panel/script.js"></script>
+<?php include("partials/_footer.php"); ?>
