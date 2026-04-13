@@ -23,8 +23,8 @@ if (!$user_data) {
 <div class="content">
     <?php include("partials/_navbar.php"); ?>
     
-    <main>
-        <div class="header">
+    <main style="padding: 36px 24px; min-height: calc(100vh - 56px); background: var(--grey);">
+        <div class="header" style="margin-bottom: 30px;">
             <div class="left" style="margin-left: 20px;">
                 <h1>Student Dashboard</h1>
                 <ul class="breadcrumb" style="list-style: none; display: flex; gap: 10px; color: var(--text-muted); padding: 0;">

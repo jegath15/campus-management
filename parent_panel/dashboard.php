@@ -24,8 +24,8 @@ $data = $stmt->get_result()->fetch_assoc();
 <div class="content">
     <?php include("../admin_panel/partials/_navbar.php"); ?>
 
-    <main>
-        <div class="header" style="padding: 0 20px;">
+    <main style="padding: 36px 24px; min-height: calc(100vh - 56px); background: var(--grey);">
+        <div class="header">
             <div class="left">
                 <h1>Guardian Overview</h1>
                 <ul class="breadcrumb" style="list-style: none; display: flex; gap: 10px; color: var(--text-muted); padding: 0;">

@@ -1,19 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-    --light: var(--bg-card);
-    --primary: var(--primary);
+    --light: #ffffff;
+    --primary: #4361ee;
     --light-primary: rgba(67, 97, 238, 0.1);
-    --grey: var(--bg-main);
-    --dark-grey: var(--text-muted);
-    --dark: var(--text-main);
-    --danger: var(--danger);
+    --grey: #f8fafc;
+    --dark-grey: #64748b;
+    --dark: #1e293b;
+    --danger: #f72585;
     --light-danger: rgba(247, 37, 133, 0.1);
-    --warning: var(--warning);
+    --warning: #ff9800;
     --light-warning: rgba(255, 152, 0, 0.1);
-    --success: var(--success);
+    --success: #4caf50;
     --light-success: rgba(76, 175, 80, 0.1);
-    --white: var(--bg-card);
+    --white: #ffffff;
 }
 .danger { color: var(--danger) !important; }
 
@@ -377,11 +377,7 @@ body::-webkit-scrollbar {
 .sidebar .side-menu li.active {
     background: var(--grey);
     position: relative;
-}
-
-.sidebar.show .side-menu li.active {
-    background: var(--grey);
-    position: relative;
+    z-index: 10;
 }
 
 .sidebar .side-menu li.active::before {
@@ -393,19 +389,7 @@ body::-webkit-scrollbar {
     top: -40px;
     right: 0;
     box-shadow: 20px 20px 0 var(--grey);
-    z-index: -1;
-}
-
-.sidebar.show .side-menu li.active::before {
-    content: "";
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    top: -40px;
-    right: 0;
-    box-shadow: 20px 20px 0 var(--grey);
-    z-index: -1;
+    pointer-events: none;
 }
 
 .sidebar .side-menu li.active::after {
@@ -417,19 +401,7 @@ body::-webkit-scrollbar {
     bottom: -40px;
     right: 0;
     box-shadow: 20px -20px 0 var(--grey);
-    z-index: -1;
-}
-
-.sidebar.show .side-menu li.active::after {
-    content: "";
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    bottom: -40px;
-    right: 0;
-    box-shadow: 20px -20px 0 var(--grey);
-    z-index: -1;
+    pointer-events: none;
 }
 
 .sidebar .side-menu li a {
