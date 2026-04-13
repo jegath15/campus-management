@@ -1,19 +1,19 @@
-<?php
-// student_panel/partials/_header.php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Boxicons for Original Design -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Original Legacy CSS -->
+    <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
+    <title>Student Dashboard | Campus Management System</title>
+</head>
+<body class="light">
+<?php include('../assets/config.php'); ?>
+<?php 
+if(!isset($_SESSION)) {
+    session_start();
+}
+include("../assets/noSessionRedirect.php");
 ?>
-<header class="glass">
-    <div class="logo" title="SMS System">
-        <img src="../images/1.jpeg" alt="">
-        <h2>C<span class="danger">M</span>S</h2>
-    </div>
-    
-    <div class="header-tools" style="display: flex; align-items: center; gap: 1rem;">
-        <div id="profile-btn">
-            <span class="material-icons-sharp">menu</span>
-        </div>
-        <div class="theme-toggler">
-            <span class="material-icons-sharp active">light_mode</span>
-            <span class="material-icons-sharp">dark_mode</span>
-        </div>
-    </div>
-</header>

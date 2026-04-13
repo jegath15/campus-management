@@ -97,8 +97,10 @@ $active_page = 'exam';
 <body>
     <?php include('partials/_header.php'); ?>
 
-    <div class="container">
-        <?php include('partials/_sidebar.php'); ?>
+    <?php include('partials/_sidebar.php'); ?>
+
+    <div class="content">
+        <?php include("../admin_panel/partials/_navbar.php"); ?>
 
         <main>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">

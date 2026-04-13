@@ -80,8 +80,10 @@ $active_page = 'workspace';
 <body>
     <?php include('partials/_header.php'); ?>
 
-    <div class="container">
-        <?php include('partials/_sidebar.php'); ?>
+    <?php include('partials/_sidebar.php'); ?>
+
+    <div class="content">
+        <?php include("../admin_panel/partials/_navbar.php"); ?>
 
         <main>
             <h1>Student Workspace</h1>
@@ -112,7 +114,7 @@ $active_page = 'workspace';
                             echo "<tr>
                                     <td>".$rows['subject']."</td>
                                     <td>".$rows['title']."</td>
-                                    <td><a href='../notesUploads/".$rows['file']."' class='btn' download><span class='material-icons-sharp' style='font-size:1.1rem;'>cloud_download</span> Download</a></td>
+                                    <td><a href='../notesUploads/".$rows['file']."' class='btn' download><i class='bx bx-cloud-download' style='font-size:1.1rem;'></i> Download</a></td>
                                     <td>".$formattedDate."</td>
                                   </tr>";
                         }

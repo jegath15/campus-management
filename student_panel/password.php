@@ -104,15 +104,17 @@ if(isset($_POST['submit'])){
 <body>
     <?php include('partials/_header.php'); ?>
 
-    <div class="container">
-        <?php include('partials/_sidebar.php'); ?>
+    <?php include('partials/_sidebar.php'); ?>
+
+    <div class="content">
+        <?php include("../admin_panel/partials/_navbar.php"); ?>
 
         <main>
             <h1>Security Settings</h1>
             
             <div class="change-password-container">
                 <div class="password-card premium-card">
-                    <h2 style="margin-bottom: 0.5rem;"><span class="material-icons-sharp" style="vertical-align: middle;">lock</span> Reset Password</h2>
+                    <h2 style="margin-bottom: 0.5rem;"><i class='bx bx-lock-alt' style="vertical-align: middle;"></i> Reset Password</h2>
                     <p class="text-muted" style="margin-bottom: 2rem;">Ensure your account stays secure by using a strong, unique password.</p>
                     
                     <form action="#" method="post">

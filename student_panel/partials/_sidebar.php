@@ -1,56 +1,41 @@
-<?php
-// student_panel/partials/_sidebar.php
-// Expected variables: $active_page (e.g., 'home', 'timetable', 'exam', 'workspace', 'password')
-?>
-<aside>
-    <div class="profile premium-card">
-        <div class="top">
-            <div class="profile-photo">
-                <img src="../studentUploads/<?php echo $user_data['image'] ?? '1.jpeg'; ?>" onerror="this.src='../images/1.jpeg'">
-            </div>
-            <div class="info">
-                <p>Hey, <b><?php echo $user_data["fname"] ?? 'Student'; ?></b> </p>
-                <small class='text-muted'><b>ID : </b><?php echo $user_data["id"] ?? '0'; ?></small>
-            </div>
-        </div>
-        
-        <div class="sidebar-menu" style="margin-top: 2rem;">
-            <a href="index.php" class="<?php echo ($active_page == 'home') ? 'active' : ''; ?>" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 12px; transition: all 300ms ease;">
-                <span class="material-icons-sharp">home</span>
-                <h3>Home</h3>
-            </a>
-            <a href="timetable.php" class="<?php echo ($active_page == 'timetable') ? 'active' : ''; ?>" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 12px; transition: all 300ms ease;">
-                <span class="material-icons-sharp">today</span>
-                <h3>Time Table</h3>
-            </a>
-            <a href="exam.php" class="<?php echo ($active_page == 'exam') ? 'active' : ''; ?>" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 12px; transition: all 300ms ease;">
-                <span class="material-icons-sharp">grid_view</span>
-                <h3>Examination</h3>
-            </a>
-            <a href="workspace.php" class="<?php echo ($active_page == 'workspace') ? 'active' : ''; ?>" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 12px; transition: all 300ms ease;">
-                <span class="material-icons-sharp">description</span>
-                <h3>Workspace</h3>
-            </a>
-            <a href="password.php" class="<?php echo ($active_page == 'password') ? 'active' : ''; ?>" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 12px; transition: all 300ms ease;">
-                <span class="material-icons-sharp">password</span>
-                <h3>Settings</h3>
-            </a>
-            <a href="logout.php" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 12px; transition: all 300ms ease; color: var(--danger); margin-top: 1rem;">
-                <span class="material-icons-sharp">logout</span>
-                <h3>Logout</h3>
-            </a>
-        </div>
 
-        <div class="about" style="margin-top: 2rem; border-top: 1px solid var(--color-light); padding-top: 1rem;">
-            <h5>Class / Section</h5>
-            <p><?php echo ($user_data["class"] ?? 'N/A') . " - " . ($user_data["section"] ?? 'N/A'); ?></p>
-            <h5>Contact</h5>
-            <p><?php echo $user_data["phone"] ?? 'N/A'; ?></p>
-            <br>
-            <div class="quick-links" style="display: flex; flex-direction: column; gap: 0.5rem;">
-                <a href="buspanel.php" class="btn btn-sm">Bus Panel</a>
-                <a href="fee-payment.php" class="btn btn-sm" style="background: var(--secondary);">Pay Fee</a>
+<div class="sidebar">
+    <a href="index.php" class="logo">
+        <img src="../images/1.jpeg">
+        <div class="logo-name"><h2>C<span class="danger">M</span>S</h2></div>
+    </a>
+    
+    <ul class="side-menu main-side-board">
+        <li class="<?php echo ($active_page == 'home') ? 'active' : ''; ?>"><a href="index.php"><i class='bx bx-home-alt'></i>Home</a></li>
+        <li class="<?php echo ($active_page == 'timetable') ? 'active' : ''; ?>"><a href="timetable.php"><i class='bx bx-table'></i>Time Table</a></li>
+        <li class="<?php echo ($active_page == 'exam') ? 'active' : ''; ?>"><a href="exam.php"><i class='bx bx-grid-alt'></i>Examination</a></li>
+        <li class="<?php echo ($active_page == 'workspace') ? 'active' : ''; ?>"><a href="workspace.php"><i class='bx bx-folder-open'></i>Workspace</a></li>
+        <li class="<?php echo ($active_page == 'password') ? 'active' : ''; ?>"><a href="password.php"><i class='bx bx-lock-alt'></i>Settings</a></li>
+    </ul>
+    
+    <ul class="side-menu">
+        <li>
+            <a class="logout" data-bs-toggle="modal" data-bs-target="#logout-modal">
+                <i class='bx bx-log-out-circle'></i>
+                Logout
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- Logout Modal (Standardized) -->
+<div class="modal fade" id="logout-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="border-radius: 12px;">
+            <div class="modal-body" style="padding: 2rem; text-align: center;">
+                <i class='bx bx-door-open' style="font-size: 3rem; color: var(--danger);"></i>
+                <h4 style="margin-top: 1rem;">Confirm Session End</h4>
+                <p class="text-muted">Are you sure you want to log out of the Student Portal?</p>
+                <div style="display: flex; gap: 10px; justify-content: center; margin-top: 2rem;">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" onclick="location.href='logout.php'">LOGOUT</button>
+                </div>
             </div>
         </div>
     </div>
-</aside>
+</div>

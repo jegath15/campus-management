@@ -22,8 +22,10 @@ $active_page = 'timetable';
 <body>
     <?php include('partials/_header.php'); ?>
 
-    <div class="container">
-        <?php include('partials/_sidebar.php'); ?>
+    <?php include('partials/_sidebar.php'); ?>
+
+    <div class="content">
+        <?php include("../admin_panel/partials/_navbar.php"); ?>
 
         <main>
             <h1>Academic Schedule</h1>
@@ -45,7 +47,7 @@ $active_page = 'timetable';
                 </table>
 
                 <div id="noClasses" style="display: none; text-align: center; padding: 3rem;">
-                    <span class="material-icons-sharp" style="font-size: 4rem; color: var(--color-light);">event_busy</span>
+                    <i class='bx bx-calendar-x' style="font-size: 4rem; color: var(--color-light);"></i>
                     <p class="text-muted" style="margin-top: 1rem;">No classes scheduled for this day.</p>
                 </div>
             </div>
