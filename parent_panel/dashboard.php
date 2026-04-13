@@ -18,14 +18,14 @@ $stmt->execute();
 $data = $stmt->get_result()->fetch_assoc();
 ?>
 
-<!-- Reversion to Administrative Sidebar Layout -->
+<!-- Legacy Administrative Sidebar Layout -->
 <?php include('partials/_sidebar.php') ?>
 
 <div class="content">
     <?php include("../admin_panel/partials/_navbar.php"); ?>
 
     <main style="padding: 36px 24px; min-height: calc(100vh - 56px); background: var(--grey);">
-        <div class="header">
+        <div class="header" style="margin-bottom: 30px;">
             <div class="left">
                 <h1>Guardian Overview</h1>
                 <ul class="breadcrumb" style="list-style: none; display: flex; gap: 10px; color: var(--text-muted); padding: 0;">
@@ -36,26 +36,27 @@ $data = $stmt->get_result()->fetch_assoc();
             </div>
         </div>
 
+        <!-- Insights as Pixel-Perfect Original Cards (Solid Icon Square) -->
         <ul class="insights">
             <li class="premium-card" style="display: flex; align-items: center; gap: 20px;">
-                <i class='bx bxs-graduation' style="font-size: 2.5rem; color: var(--primary); background: var(--light-primary); padding: 15px; border-radius: 15px;"></i>
+                <i class='bx bxs-graduation' style="font-size: 2rem; color: #0d6efd; background: #e7f0ff; padding: 20px; border-radius: 15px;"></i>
                 <span class="info">
-                    <h3><?php echo $data['fname'] . " " . $data['lname']; ?></h3>
-                    <p>Student Profile</p>
+                    <h3 style="font-size: 1.5rem; font-weight: 700;"><?php echo $data['fname'] . " " . $data['lname']; ?></h3>
+                    <p style="color: #64748b;">Student Profile</p>
                 </span>
             </li>
             <li class="premium-card" style="display: flex; align-items: center; gap: 20px;">
-                <i class='bx bxs-bank' style="font-size: 2.5rem; color: var(--success); background: var(--light-success); padding: 15px; border-radius: 15px;"></i>
+                <i class='bx bxs-bank' style="font-size: 2rem; color: #198754; background: #f0fff4; padding: 20px; border-radius: 15px;"></i>
                 <span class="info">
-                    <h3>₹<?php echo $data['paid_amount'] ?? '0'; ?></h3>
-                    <p>Fees Paid</p>
+                    <h3 style="font-size: 1.5rem; font-weight: 700;">₹<?php echo $data['paid_amount'] ?? '0'; ?></h3>
+                    <p style="color: #64748b;">Fees Paid</p>
                 </span>
             </li>
             <li class="premium-card" style="display: flex; align-items: center; gap: 20px;">
-                <i class='bx bxs-error-circle' style="font-size: 2.5rem; color: var(--danger); background: var(--light-danger); padding: 15px; border-radius: 15px;"></i>
+                <i class='bx bxs-error-circle' style="font-size: 2.5rem; color: #dc3545; background: #fff5f5; padding: 15px; border-radius: 15px;"></i>
                 <span class="info">
-                    <h3><?php echo strtoupper($data['status'] ?? 'N/A'); ?></h3>
-                    <p>Fee Status</p>
+                    <h3 style="font-size: 1.5rem; font-weight: 700; color: #dc3545;"><?php echo strtoupper($data['status'] ?? 'N/A'); ?></h3>
+                    <p style="color: #64748b;">Fee Status</p>
                 </span>
             </li>
         </ul>
@@ -63,37 +64,26 @@ $data = $stmt->get_result()->fetch_assoc();
         <div class="bottom-data">
             <div class="orders">
                 <div class="header">
-                    <i class='bx bx-bell'></i>
-                    <h3>Latest Notices</h3>
+                    <i class='bx bx-news'></i>
+                    <h3>Campus Messages</h3>
+                    <i class='bx bx-filter'></i>
                 </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Topic</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $stmt_not = $conn->prepare("SELECT * FROM notice WHERE role='parent' OR role='all' ORDER BY s_no DESC LIMIT 3");
-                        $stmt_not->execute();
-                        $notice_res = $stmt_not->get_result();
-                        while($row_n = $notice_res->fetch_assoc()){
-                            echo "<tr><td>".$row_n['title']."</td><td>".date('d M, Y', strtotime($row_n['timestamp']))."</td></tr>";
-                        }
-                        ?>
-                    </tbody>
-                </table>
+                <div style="padding: 20px;">
+                    <p class="text-muted">Viewing official correspondence for <strong><?php echo $data['fname']; ?></strong>...</p>
+                    <hr>
+                    <p>No new messages found.</p>
+                </div>
             </div>
 
             <div class="reminders">
                 <div class="header">
-                    <i class='bx bx-link-external'></i>
-                    <h3>Quick Actions</h3>
+                    <i class='bx bx-calendar'></i>
+                    <h3>Events</h3>
+                    <i class='bx bx-plus'></i>
                 </div>
                 <ul class="task-list">
-                    <li onclick="location.href='fee-details.php'"><i class='bx bx-check-double'></i> View Fee Details</li>
-                    <li onclick="location.href='payment.php'"><i class='bx bx-upload'></i> Upload Payment Proof</li>
+                    <li><i class='bx bx-chevron-right'></i> Parent-Teacher Meeting (TBA)</li>
+                    <li><i class='bx bx-chevron-right'></i> Annual Sports Day</li>
                 </ul>
             </div>
         </div>

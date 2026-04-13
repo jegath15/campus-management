@@ -1,26 +1,29 @@
 <nav>
     <i class='bx bx-menu SidebarOpener'></i>
-    <form id="unknowingForm">
+    <form action="#">
         <div class="form-input">
-            <input type="search" placeholder="Search my classes..." id="topMostSearchBar">
-            <button class="search-btn" type="button" id="topMostSearchBarBtn"><i class='bx bx-search-alt'></i></button>
+            <input type="search" placeholder="Search...">
+            <button class="search-btn" type="submit" style="background: #0d6efd; color: #fff; border-radius: 0 36px 36px 0; width: 48px; display: flex; align-items: center; justify-content: center; border: none;">
+                <i class='bx bx-search'></i>
+            </button>
         </div>
     </form>
     
     <input type="checkbox" id="theme-toggle" hidden>
     <label for="theme-toggle" class="theme-toggle"></label>
 
-    <a href="password.php" class="profile" id="navbar_profile_pic">
+    <a href="password.php" class="profile">
         <img src="../studentUploads/<?php echo $user_data['image'] ?? '1.jpeg'; ?>" onerror="this.src='../images/user.png'">
     </a>
 
-    <div class="dropdown dropdown-center">
-        <a class="menu" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class='bx bx-dots-vertical-rounded icon-hover-circle'></i>
+    <div class="dropdown">
+        <a class="menu" href="#" data-bs-toggle="dropdown">
+            <i class='bx bx-dots-vertical-rounded'></i>
         </a>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="password.php">Security Settings</a></li>
-            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logout-modal">Sign Out</a></li>
+        <ul class="dropdown-menu shadow border-0" style="border-radius: 12px;">
+            <li><a class="dropdown-item" href="password.php"><i class='bx bx-cog me-2'></i> Settings</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#logout-modal"><i class='bx bx-log-out me-2'></i> Logout</a></li>
         </ul>
     </div>
 </nav>

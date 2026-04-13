@@ -2,7 +2,7 @@
 <div class="sidebar">
     <a href="dashboard.php" class="logo">
         <img src="../images/1.jpeg">
-        <div class="logo-name"><h2>C<span class="danger">M</span>S</h2></div>
+        <div class="logo-name"><span style="color: #ffc107;">E</span>RP</div>
     </a>
     
     <ul class="side-menu main-side-board">
