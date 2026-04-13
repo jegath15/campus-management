@@ -1,4 +1,5 @@
 <?php
+include_once('config.php');
 session_start();
 include('config.php');
 $data = array();

@@ -1,11 +1,10 @@
 <?php
 session_start();
-include('lang_setup.php');
+include('../assets/config.php');
 if(!isset($_SESSION['uid']) || $_SESSION['role'] !== 'parent'){
    header("Location: ../index.php");
    exit();
 }
-include('../assets/config.php');
 
 $user_id = $_SESSION['uid'];
 

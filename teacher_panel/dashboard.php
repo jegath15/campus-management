@@ -22,44 +22,44 @@ $active_page = 'dashboard';
                 <span class="material-icons-sharp">person</span>
                 <div class="middle">
                     <div class="left">
-                        <h3>Teachers</h3>
+                        <h3><?php echo t('teachers'); ?></h3>
                         <h2 id="teacherCount">...</h2>
                     </div>
                 </div>
-                <small class="text-muted">Total Faculty</small>
+                <small class="text-muted"><?php echo t('total_faculty'); ?></small>
             </div>
             
             <div class="card2 premium-card" onclick="showStudentList()" style="cursor: pointer;">
                 <span class="material-icons-sharp">group</span>
                 <div class="middle">
                     <div class="left">
-                        <h3>Students</h3>
+                        <h3><?php echo t('students'); ?></h3>
                         <h2 id="studentCount">...</h2>
                     </div>
                 </div>
-                <small class="text-muted">Registered Pupils</small>
+                <small class="text-muted"><?php echo t('registered_pupils'); ?></small>
             </div>
 
             <div class="card3 premium-card" onclick="showNotesList()" style="cursor: pointer;">
                 <span class="material-icons-sharp">description</span>
                 <div class="middle">
                     <div class="left">
-                        <h3>Notes</h3>
+                        <h3><?php echo t('notes'); ?></h3>
                         <h2 id="classCount">...</h2>
                     </div>
                 </div>
-                <small class="text-muted">Course Materials</small>
+                <small class="text-muted"><?php echo t('course_materials'); ?></small>
             </div>
 
             <div class="card4 premium-card" onclick="showNoticeList()" style="cursor: pointer;">
                 <span class="material-icons-sharp">campaign</span>
                 <div class="middle">
                     <div class="left">
-                        <h3>Notices</h3>
+                        <h3><?php echo t('notices'); ?></h3>
                         <h2 id="noticeCount">...</h2>
                     </div>
                 </div>
-                <small class="text-muted">Active Bulletins</small>
+                <small class="text-muted"><?php echo t('active_bulletins'); ?></small>
             </div>
         </div>
 

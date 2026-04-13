@@ -65,8 +65,8 @@ $student_count = $stmt_s->get_result()->fetch_assoc()['total'];
     <div class="container-fluid px-5 py-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div>
-                <h1 class="fw-bold">Executive Dashboard</h1>
-                <p class="text-muted">Real-time institutional oversight and analytics.</p>
+                <h1 class="fw-bold"><?php echo t('executive_dashboard'); ?></h1>
+                <p class="text-muted"><?php echo t('real_time_oversight'); ?></p>
             </div>
             <div class="date-chip px-3 py-2 bg-white rounded-pill shadow-sm">
                 <i class='bx bx-calendar text-primary me-2'></i>
@@ -79,26 +79,26 @@ $student_count = $stmt_s->get_result()->fetch_assoc()['total'];
             <div class="premium-card d-flex flex-column gap-3">
                 <div class="d-flex justify-content-between">
                     <i class='bx bxs-briefcase-alt-2 fs-1 text-primary'></i>
-                    <span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill">Active Faculty</span>
+                    <span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill"><?php echo t('active_faculty'); ?></span>
                 </div>
                 <div>
                     <h2 class="display-5 fw-bold mb-0"><?php echo $teacher_count; ?></h2>
-                    <p class="text-muted">Total Registered Educators</p>
+                    <p class="text-muted"><?php echo t('total_registered_educators'); ?></p>
                 </div>
-                <a href="teacher-list.php" class="btn btn-primary rounded-pill mt-auto fw-bold py-2 shadow-sm" style="background-color: #4361ee !important; border: none; color: white !important;">Manage Faculty</a>
+                <a href="teacher-list.php" class="btn btn-primary rounded-pill mt-auto fw-bold py-2 shadow-sm" style="background-color: #4361ee !important; border: none; color: white !important;"><?php echo t('manage_faculty'); ?></a>
             </div>
 
             <!-- Student Metrics -->
             <div class="premium-card d-flex flex-column gap-3">
                 <div class="d-flex justify-content-between">
                     <i class='bx bxs-group fs-1 text-success'></i>
-                    <span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill">Enrollment</span>
+                    <span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill"><?php echo t('enrollment'); ?></span>
                 </div>
                 <div>
                     <h2 class="display-5 fw-bold mb-0"><?php echo $student_count; ?></h2>
-                    <p class="text-muted">Currently Enrolled Students</p>
+                    <p class="text-muted"><?php echo t('currently_enrolled_students'); ?></p>
                 </div>
-                <a href="student-list.php" class="btn btn-success rounded-pill mt-auto fw-bold py-2 shadow-sm text-white" style="background-color: #2ec4b6 !important; border: none; color: white !important;">View Statistics</a>
+                <a href="student-list.php" class="btn btn-success rounded-pill mt-auto fw-bold py-2 shadow-sm text-white" style="background-color: #2ec4b6 !important; border: none; color: white !important;"><?php echo t('view_statistics'); ?></a>
             </div>
 
             <!-- System Status -->
@@ -108,8 +108,8 @@ $student_count = $stmt_s->get_result()->fetch_assoc()['total'];
                     <span class="badge bg-white text-primary px-3 py-2 rounded-pill shadow-sm" style="font-weight: 700;">v3.1 Elite</span>
                 </div>
                 <div>
-                    <h2 class="h3 fw-bold mb-1 mt-2">System Healthy</h2>
-                    <p class="opacity-90 small">All institutional modules are operational and synchronized.</p>
+                    <h2 class="h3 fw-bold mb-1 mt-2"><?php echo t('system_healthy'); ?></h2>
+                    <p class="opacity-90 small"><?php echo t('all_modules_operational'); ?></p>
                 </div>
                 <div class="mt-auto d-flex gap-2">
                     <div class="px-3 py-3 rounded-4 bg-white bg-opacity-25 flex-grow-1 text-center border border-white border-opacity-25 shadow-sm">

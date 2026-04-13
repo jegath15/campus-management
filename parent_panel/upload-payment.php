@@ -1,14 +1,14 @@
 <?php
+include('../assets/config.php');
 session_start();
 if(!isset($_SESSION['uid']) || $_SESSION['role'] !== 'parent'){
-   header("Location: ../index.php");
+   header("Location: " . BASE_URL);
    exit();
 }
-include('../assets/config.php');
 
 $user_id = $_SESSION['uid'];
 
-$q = mysqli_query($conn,"SELECT student_id FROM parents WHERE user_id='$user_id'");
+$q = mysqli_query($conn,"SELECT student_id FROM parents WHERE user_id COLLATE utf8mb4_general_ci ='$user_id'");
 $row = mysqli_fetch_assoc($q);
 $student_id = $row['student_id'];
 

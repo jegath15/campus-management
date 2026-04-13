@@ -1,6 +1,5 @@
 <?php
 session_start();
-include('lang_setup.php');
 include('../assets/config.php');
 if(!isset($_SESSION['uid']) || $_SESSION['role'] !== 'parent'){
    header("Location: " . BASE_URL);

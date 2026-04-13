@@ -1,4 +1,5 @@
 <?php
+    require_once(dirname(__FILE__) . '/lang_setup.php');
     // Robust Session Configuration - Prevents 500 errors on Railway
     $session_dir = dirname(__FILE__, 2) . '/sessions';
     if (!is_dir($session_dir)) {

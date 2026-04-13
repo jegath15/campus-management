@@ -1,20 +1,19 @@
 <?php
 session_start();
-include('lang_setup.php');
+include('../assets/config.php');
 if(!isset($_SESSION['uid']) || $_SESSION['role'] !== 'parent'){
    header("Location: " . BASE_URL);
    exit();
 }
-include('../assets/config.php');
 
 $user_id = $_SESSION['uid'];
 
 $stmt = $conn->prepare("
     SELECT f.total_fee, f.paid_amount, s.image
     FROM parents p
-    JOIN fees f ON p.student_id = f.student_id
-    JOIN students s ON p.student_id = s.id
-    WHERE p.user_id=?
+    JOIN fees f ON p.student_id COLLATE utf8mb4_general_ci = f.student_id COLLATE utf8mb4_general_ci
+    JOIN students s ON p.student_id COLLATE utf8mb4_general_ci = s.id COLLATE utf8mb4_general_ci
+    WHERE p.user_id COLLATE utf8mb4_general_ci = ?
 ");
 $stmt->bind_param("s", $user_id);
 $stmt->execute();
